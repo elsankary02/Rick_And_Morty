@@ -1,52 +1,3 @@
-class Character {
-  List<Results>? results;
-
-  Character({this.results});
-
-  Character.fromJson(Map<String, dynamic> json) {
-    if (json['results'] != null) {
-      results = <Results>[];
-      json['results'].forEach((v) {
-        results!.add(Results.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    if (results != null) {
-      data['results'] = results!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Info {
-  int? count;
-  int? pages;
-  String? next;
-  Null prev;
-
-  Info({this.count, this.pages, this.next, this.prev});
-
-  Info.fromJson(Map<String, dynamic> json) {
-    count = json['count'];
-    pages = json['pages'];
-    next = json['next'];
-    prev = json['prev'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['count'] = count;
-    data['pages'] = pages;
-    data['next'] = next;
-    data['prev'] = prev;
-    return data;
-  }
-}
-
 class Results {
   int? id;
   String? name;
@@ -96,7 +47,6 @@ class Results {
     data['id'] = id;
     data['name'] = name;
     data['status'] = status;
-
     data['species'] = species;
     data['type'] = type;
     data['gender'] = gender;

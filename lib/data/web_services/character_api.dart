@@ -1,11 +1,13 @@
 import 'package:dio/dio.dart';
 
 class ApiService {
-  late Dio dio;
-  final paseUrl = 'https://rickandmortyapi.com/api/';
+  final Dio dio;
 
-  Future<Map<String, dynamic>> getApi({required String endPoint}) async {
-    Response response = await dio.get('$paseUrl$endPoint');
+  ApiService(this.dio);
+
+  Future<Map<String, dynamic>> getApi() async {
+    Response response =
+        await dio.get('https://rickandmortyapi.com/api/character');
     return response.data;
   }
 }

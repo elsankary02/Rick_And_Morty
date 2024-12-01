@@ -10,22 +10,22 @@ class CharactersCubit extends Cubit<CharactersState> {
   final ApiService apiService;
   CharactersCubit(this.apiService) : super(CharactersInitial());
   Future<void> setApi() async {
-    emit(CharactersLoading());
+    // emit(CharactersLoading());
     try {
-      final result = await apiService.getApi(endPoint: 'character');
-      List<Character> characters = [];
-      final data = result['results'] as List;
+      final result = await apiService.getApi();
+      List<Results> results = [];
+      final data = result['Results'] as List;
       for (var details in data) {
-        characters.add(Character.fromJson(details));
+        results.add(Results.fromJson(details));
       }
-      emit(CharactersSuccess(characters));
+      emit(CharactersSuccess(results));
     } catch (e) {
       if (e is DioException) {
-        emit(
-          CharactersFailuer(
-            e.toString(),
-          ),
-        );
+        // emit(
+        //   CharactersFailuer(
+        //     e.toString(),
+        //   ),
+        // );
       }
     }
   }
