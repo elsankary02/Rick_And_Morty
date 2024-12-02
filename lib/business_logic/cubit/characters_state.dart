@@ -7,14 +7,14 @@ final class CharactersInitial extends CharactersState {}
 
 final class CharactersLoading extends CharactersState {}
 
-// final class CharactersFailuer extends CharactersState {
-//   final String errorMassage;
+final class CharactersFailuer extends CharactersState {
+  final String errorMassage;
 
-//   CharactersFailuer(this.errorMassage);
-// }
+  CharactersFailuer(this.errorMassage);
+}
 
 final class CharactersSuccess extends CharactersState {
-  final List<Results> results;
+  final List<Results> characterModel;
 
-  CharactersSuccess(this.results);
+  CharactersSuccess(this.characterModel);
 }

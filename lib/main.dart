@@ -1,4 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty/business_logic/cubit/characters_cubit.dart';
+import 'package:rick_and_morty/data/web_services/character_api.dart';
 import 'package:rick_and_morty/presentation/screens/character_screen.dart';
 
 void main() {
@@ -10,9 +14,14 @@ class RickAndMorty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CharacterScreen(),
+      home: BlocProvider<CharactersCubit>(
+        create: (context) => CharactersCubit(
+          ApiService(Dio()),
+        )..setApi(),
+        child: const CharacterScreen(),
+      ),
     );
   }
 }
