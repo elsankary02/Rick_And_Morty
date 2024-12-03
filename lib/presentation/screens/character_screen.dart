@@ -1,18 +1,15 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:rick_and_morty/business_logic/cubit/characters_cubit.dart';
+import 'package:rick_and_morty/business_logic/cubit/character_cubit.dart';
 import 'package:rick_and_morty/constant/colors.dart';
 import 'package:rick_and_morty/presentation/widgets/details_widget.dart';
 
-class CharacterScreen extends StatefulWidget {
+class CharacterScreen extends StatelessWidget {
   const CharacterScreen({super.key});
 
-  @override
-  State<CharacterScreen> createState() => _CharacterScreenState();
-}
-
-class _CharacterScreenState extends State<CharacterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +26,10 @@ class _CharacterScreenState extends State<CharacterScreen> {
       backgroundColor: AppColors.grey,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: BlocBuilder<CharactersCubit, CharactersState>(
+        child: BlocBuilder<CharacterCubit, CharacterState>(
           builder: (context, state) {
             if (state is CharactersSuccess) {
+              log('ازيك يبيبي انا جيت');
               return GridView.builder(
                 physics: const BouncingScrollPhysics(),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -45,10 +43,12 @@ class _CharacterScreenState extends State<CharacterScreen> {
                   results: state.characterModel[index],
                 ),
               );
-            } else if (state is CharactersFailuer) {
+            }
+            if (state is CharactersFailuer) {
               return Text(state.errorMassage);
             }
             {
+              log('وه جاااار تحميل الداتا');
               return Center(
                 child: LoadingAnimationWidget.twistingDots(
                     leftDotColor: AppColors.white,
