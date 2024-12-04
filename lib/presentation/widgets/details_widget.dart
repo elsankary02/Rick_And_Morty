@@ -13,7 +13,9 @@ class DetailsWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => const DetailScreen(),
+          builder: (context) => DetailScreen(
+            results: results,
+          ),
         ),
       ),
       child: ClipRRect(
@@ -25,6 +27,8 @@ class DetailsWidget extends StatelessWidget {
               decoration: const BoxDecoration(color: Colors.black54),
               child: Text(
                 results.name!,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   color: AppColors.white,
                   fontSize: 15,

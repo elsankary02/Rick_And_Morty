@@ -14,6 +14,7 @@ class CharacterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: AppColors.yellow,
         title: const Text(
           'Rick & Morty',
@@ -25,7 +26,7 @@ class CharacterScreen extends StatelessWidget {
       ),
       backgroundColor: AppColors.grey,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
         child: BlocBuilder<CharacterCubit, CharacterState>(
           builder: (context, state) {
             if (state is CharactersSuccess) {
