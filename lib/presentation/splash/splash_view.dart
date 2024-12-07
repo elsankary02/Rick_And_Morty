@@ -16,24 +16,33 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    splashRickAndMotry();
+    _splashRickAndMotry();
     super.initState();
   }
 
-  splashRickAndMotry() {
-    Future.delayed(const Duration(seconds: 2), () {
-      // ignore: use_build_context_synchronously
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => BlocProvider<CharacterCubit>(
-            create: (context) => CharacterCubit(
-              ApiService(Dio()),
-            )..fetchAllCharacter(),
-            child: const CharacterScreen(),
+  _splashRickAndMotry() {
+    Future.delayed(
+      const Duration(seconds: 2),
+      () {
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => BlocProvider<CharacterCubit>(
+              create: (context) => CharacterCubit(
+                ApiService(Dio()),
+              )..fetchAllCharacter(),
+              child: const CharacterScreen(),
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    _splashRickAndMotry();
+    super.dispose();
   }
 
   @override

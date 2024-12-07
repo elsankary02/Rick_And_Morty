@@ -21,10 +21,14 @@ class DetailsWidget extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
         child: Container(
-          decoration: const BoxDecoration(color: AppColors.white),
+          decoration: const BoxDecoration(
+            color: AppColors.white,
+          ),
           child: GridTile(
             footer: Container(
-              decoration: const BoxDecoration(color: Colors.black54),
+              decoration: const BoxDecoration(
+                color: Colors.black54,
+              ),
               child: Text(
                 results.name!,
                 maxLines: 2,
@@ -42,9 +46,10 @@ class DetailsWidget extends StatelessWidget {
               fit: BoxFit.cover,
               placeholder: (context, url) => Center(
                 child: LoadingAnimationWidget.twistingDots(
-                    leftDotColor: AppColors.grey,
-                    rightDotColor: AppColors.yellow,
-                    size: 50),
+                  leftDotColor: AppColors.grey,
+                  rightDotColor: AppColors.yellow,
+                  size: 50,
+                ),
               ),
               errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
