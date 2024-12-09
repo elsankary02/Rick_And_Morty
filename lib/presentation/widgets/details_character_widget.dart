@@ -32,12 +32,12 @@ class DetailsCharacterWidget extends StatelessWidget {
             child: Text(
               results.name!,
               maxLines: 1,
-              overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: AppColors.white,
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
+              overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
             ),
           ),

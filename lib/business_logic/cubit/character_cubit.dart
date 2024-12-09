@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/data/models/results_model.dart';
@@ -13,7 +11,6 @@ class CharacterCubit extends Cubit<CharacterState> {
   Future<void> fetchAllCharacter() async {
     emit(CharactersLoading());
     try {
-      log('انا الداتا يصايع');
       var response = await apiService.getApi();
       List<Results> allCharacter = [];
       var data = response['results'] as List;
