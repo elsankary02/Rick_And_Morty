@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/data/models/results_model.dart';
 import 'package:rick_and_morty/data/web_services/character_api.dart';
+import 'package:rick_and_morty/errors/server_exception.dart';
 
 part 'character_state.dart';
 
@@ -22,15 +23,8 @@ class CharacterCubit extends Cubit<CharacterState> {
       emit(
         CharactersSuccess(allCharacter),
       );
-    } on Exception catch (e) {
-      if (e is DioException) {
-        emit(
-          CharactersFailuer(
-            e.toString(),
-          ),
-        );
-        return;
-      }
+    } on DioException catch (e) {
+      errorHandelling(e);
     }
   }
 }
